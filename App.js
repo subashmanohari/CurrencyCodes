@@ -24,7 +24,20 @@ class App extends Component {
     };
   }
 
+
+
+  interval = null;
+
   componentDidMount() {
+    this.interval = setInterval(this.getData, 60000);
+    this.getData();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  getData = () => {
     axios
       .get(
         "https://xe7ulkv238.execute-api.ap-south-1.amazonaws.com/Development/fetchdata/cad",
